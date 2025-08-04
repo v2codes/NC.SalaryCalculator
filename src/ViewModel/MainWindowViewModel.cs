@@ -520,7 +520,7 @@ namespace NC.SalaryCalculator.ViewModel
                 case 13: return "球球要乖乖午休哦~ 休息一下才有精神继续发光发热 🐷💤";
                 case 14: return "起床啦懒猪~ 午觉时间结束！一起打起精神继续加油吧 🐱🌼";
                 case 17: return "叮～ 球球快下班~ 收拾收拾准备回家咯~ 今天也辛苦啦！🏡❤️";
-                default: return "叮咚～ 又是一个小时过去啦，宝贝记得活动一下，别久坐哦～ 💕";
+                default: return "叮咚～ 又是一个小时过去啦，球球记得活动一下，别久坐哦～ 💕";
             }
         }
         #endregion
