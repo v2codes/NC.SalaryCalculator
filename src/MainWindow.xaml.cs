@@ -1,6 +1,8 @@
-﻿using System.Windows;
-using System.Windows.Input;
+﻿using NC.SalaryCalculator.Data;
 using NC.SalaryCalculator.ViewModel;
+using System.ComponentModel;
+using System.Windows;
+using System.Windows.Input;
 
 namespace NC.SalaryCalculator;
 /// <summary>
@@ -15,6 +17,8 @@ public partial class MainWindow : Window
 
         // 绑定标题栏按钮事件
         this.Loaded += MainWindow_Loaded;
+        this.Closing += OnClosing;
+        
         BindingButtonEvents();
     }
 
@@ -25,6 +29,18 @@ public partial class MainWindow : Window
 
         this.Left = workingArea.Right - this.ActualWidth - 10;
         this.Top = workingArea.Bottom - this.ActualHeight - 10;
+    }
+
+    private void OnClosing(object? sender, CancelEventArgs e)
+    {
+        if (!ApplicationConfig.AllowExit)
+        {
+            var result = MessageBox.Show("今天的钱挣够了吗？", "退出", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result != MessageBoxResult.Yes)
+            {
+                e.Cancel = true; // 取消关闭
+            }
+        }
     }
 
     private void BindingButtonEvents()
@@ -50,7 +66,6 @@ public partial class MainWindow : Window
         btnClose.Click += (s, e) =>
         {
             this.Close();
-            System.Windows.Application.Current.Shutdown();
         };
 
         titleBar.MouseMove += (s, e) =>
